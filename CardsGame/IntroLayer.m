@@ -10,6 +10,8 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "HelloWorldLayer.h"
+#import "MainViewController.h"
+#import "AppDelegate.h"
 
 
 #pragma mark - IntroLayer
@@ -60,6 +62,26 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[HelloWorldLayer scene] withColor:ccWHITE]];
+    
+	[[CCDirector sharedDirector] pause];
+    
+//	UIWindow* window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+//    
+//	[UIView beginAnimations:nil context:nil];
+//	[UIView setAnimationDuration:0.75];
+//	[UIView setAnimationBeginsFromCurrentState:YES];
+//	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:window cache:YES];
+//	[[CCDirector sharedDirector].view removeFromSuperview];
+    
+    mainviewObj = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:[NSBundle mainBundle]];
+//	mainviewObj.view.hidden = false;
+//    
+//	[window addSubview:mainviewObj.view];
+    
+    
+    AppController *app = (AppController *)[[UIApplication sharedApplication] delegate];
+    [app.navController pushViewController:mainviewObj animated:YES];
+    
+//	[UIView commitAnimations];
 }
 @end
